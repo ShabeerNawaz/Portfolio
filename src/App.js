@@ -122,17 +122,25 @@ function useTyping(words, speed=85, pause=2000) {
   return disp;
 }
 
-function useOnScreen(threshold=0.1){
-  const ref=useRef(null);
-  const[on,setOn]=useState(false);
-  useEffect(()=>{
-    const ob=new IntersectionObserver(([e])=>{if(e.isIntersecting)setOn(true);},{threshold});
-    if(ref.current)ob.observe(ref.current);
-    return()=>ob.disconnect();
-  },[]);
-  return[ref,on];
-}
+function useOnScreen(threshold = 0.1) {
+  const ref = useRef(null);
+  const [on, setOn] = useState(false);
 
+  useEffect(() => {
+    const ob = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setOn(true);
+      },
+      { threshold }
+    );
+
+    if (ref.current) ob.observe(ref.current);
+
+    return () => ob.disconnect();
+  }, [threshold]);
+
+  return [ref, on];
+}
 function FadeIn({children,delay=0,y=20}){
   const[ref,on]=useOnScreen();
   return(
