@@ -47,6 +47,23 @@ const DATA = {
         "Built a responsive React.js 18 frontend with Flask backend, supporting multi-document ingestion and structured output generation.",
       ],
       color: "#E8A020",
+      link: "https://github.com/ShabeerNawaz/Smart_Read_LIbrary_smstr_project",
+    },
+    {
+      title: "Debatra — AI-Powered Debate Training & Evaluation System (FYP)",
+      type: "Final Year Project",
+      period: "2025–2026",
+      stack: ["React.js","Node.js","Express.js","MongoDB","Python","PyTorch","Hugging Face Transformers","Socket.io","WebRTC","JWT Auth"],
+      points: [
+        "Developed as a Final Year Project at Sukkur IBA University — an AI-driven debate platform helping users improve argumentation, critical thinking, and communication skills through interactive debate sessions.",
+        "Built support for both AI-powered and human-to-human debates, with real-time feedback, automated argument evaluation, and intelligent rebuttal generation using NLP and Large Language Models.",
+        "Implemented AI vs Human debate simulation with intelligent rebuttals, plus real-time Human vs Human debate sessions over Socket.io.",
+        "Built automated argument evaluation across multiple debate metrics with personalised feedback and performance scoring.",
+        "Added Video/Audio debate support using WebRTC, real-time messaging, debate management, and a tutorial module for learning debate fundamentals.",
+        "Impact: makes structured debate training accessible anytime, anywhere, eliminating the need for physical debate environments while providing continuous, AI-powered learning and assessment.",
+      ],
+      color: "#5FB3A3",
+      link: "https://github.com/SureshDepal1/FYP.git",
     },
     {
       title: "Student Portal with AI Chatbot",
@@ -204,7 +221,7 @@ export default function Portfolio(){
 
       {/* NAVBAR */}
       <header style={S.header}>
-        <div style={S.nav}>
+        <div className="nav" style={S.nav}>
           <div style={S.brand} onClick={()=>goto("About")}>
             <div style={S.avatar}>SA</div>
             <div>
@@ -238,7 +255,7 @@ export default function Portfolio(){
 
       {/* HERO */}
       <section id="about" style={S.hero}>
-        <div style={S.heroInner}>
+        <div className="hero-inner" style={S.heroInner}>
           {/* LEFT */}
           <div style={S.heroLeft}>
             <div style={{animation:"fadeUp .5s ease both"}}>
@@ -279,7 +296,7 @@ export default function Portfolio(){
           </div>
 
           {/* RIGHT — Photo */}
-          <div style={S.heroRight}>
+          <div className="hero-right" style={S.heroRight}>
             <div style={S.photoRing1}/>
             <div style={S.photoRing2}/>
             <div style={S.photoWrap} className="photo-hover">
@@ -292,7 +309,7 @@ export default function Portfolio(){
               {label:"PyTorch",top:"42%",left:"-6%",color:"#E8A020",delay:"0.7s"},
               {label:"YOLOv11",bottom:"14%",right:"-4%",color:"#A07BC8",delay:"1.3s"},
             ].map((c,i)=>(
-              <div key={i} className="chip" style={{...S.chip,top:c.top,right:c.right,left:c.left,bottom:c.bottom,borderColor:`${c.color}40`,animationDelay:c.delay}}>
+              <div key={i} className="chip hero-chip" style={{...S.chip,top:c.top,right:c.right,left:c.left,bottom:c.bottom,borderColor:`${c.color}40`,animationDelay:c.delay}}>
                 <span style={{width:7,height:7,borderRadius:"50%",background:c.color,display:"inline-block"}}/>
                 <span style={{fontSize:11,fontWeight:600,color:"#CBD5E1"}}>{c.label}</span>
               </div>
@@ -346,7 +363,7 @@ export default function Portfolio(){
         <FadeIn delay={0.3}>
           <div style={S.profCard}>
             <p style={{...S.skillCat,marginBottom:20}}>Proficiency Levels</p>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 56px"}}>
+            <div className="prof-grid" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 56px"}}>
               {[
                 ["Python",92,"#E8A020"],["React.js",88,"#4A9EBE"],["PyTorch",84,"#A07BC8"],
                 ["JavaScript",87,"#7BAA6E"],["Node.js",80,"#E8A020"],["TensorFlow",78,"#4A9EBE"],
@@ -399,6 +416,12 @@ export default function Portfolio(){
                       <span style={{...S.projType,color:p.color}}>{p.type}</span>
                       <span style={S.projPeriod}>{p.period}</span>
                     </div>
+                    {p.link&&(
+                      <a href={p.link} target="_blank" rel="noopener noreferrer" className="proj-link"
+                        style={{...S.projLink,borderColor:`${p.color}40`,color:p.color}}>
+                        {Ico.github} <span>View Code</span> {Ico.ext}
+                      </a>
+                    )}
                   </div>
                   <h3 style={S.projTitle}>{p.title}</h3>
                   <ul style={S.projPoints}>
@@ -565,7 +588,7 @@ const C={
 const S={
   root:{background:C.bg,minHeight:"100vh",fontFamily:"'Inter',system-ui,sans-serif",color:C.text,overflowX:"hidden"},
   header:{position:"sticky",top:0,zIndex:100,background:"rgba(6,13,26,0.92)",backdropFilter:"blur(18px)",borderBottom:`1px solid ${C.border}`},
-  nav:{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 48px",maxWidth:1320,margin:"0 auto"},
+  nav:{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"14px 24px",maxWidth:1320,margin:"0 auto"},
   brand:{display:"flex",alignItems:"center",gap:12,cursor:"pointer"},
   avatar:{background:"linear-gradient(135deg,#E8A020,#C9841A)",color:"#06111E",fontWeight:900,fontSize:15,width:40,height:40,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",letterSpacing:.5,fontFamily:"Georgia,serif"},
   brandName:{fontWeight:700,fontSize:15,color:C.text},
@@ -574,9 +597,9 @@ const S={
   cta:{background:"transparent",border:`1.5px solid ${C.amber}`,color:C.amber,padding:"8px 20px",borderRadius:6,fontSize:13,fontWeight:600,cursor:"pointer",letterSpacing:.3,transition:"all .2s",fontFamily:"inherit"},
   ham:{background:"none",border:"none",cursor:"pointer",color:C.text,padding:4,display:"none"},
   mob:{background:"rgba(6,13,26,.98)",borderTop:`1px solid ${C.border}`,padding:"8px 0"},
-  mobItem:{background:"none",border:"none",cursor:"pointer",display:"block",width:"100%",textAlign:"left",padding:"13px 48px",fontSize:15,color:C.muted,fontFamily:"inherit"},
+  mobItem:{background:"none",border:"none",cursor:"pointer",display:"block",width:"100%",textAlign:"left",padding:"13px 24px",fontSize:15,color:C.muted,fontFamily:"inherit"},
 
-  hero:{maxWidth:1320,margin:"0 auto",padding:"0 48px"},
+  hero:{maxWidth:1320,margin:"0 auto",padding:"0 24px"},
   heroInner:{display:"grid",gridTemplateColumns:"1fr 460px",gap:48,alignItems:"center",minHeight:"calc(100vh - 68px)",paddingTop:40,paddingBottom:40},
   heroLeft:{},
   badge:{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(232,160,32,.1)",border:"1px solid rgba(232,160,32,.25)",color:C.amber,padding:"5px 14px",borderRadius:20,fontSize:12.5,fontWeight:600,marginBottom:22},
@@ -593,18 +616,18 @@ const S={
   socials:{display:"flex",gap:10},
   soc:{width:40,height:40,borderRadius:8,border:`1px solid ${C.border}`,background:"rgba(255,255,255,0.03)",display:"flex",alignItems:"center",justifyContent:"center",color:C.muted,transition:"all .2s",textDecoration:"none"},
 
-  heroRight:{position:"relative",height:520,display:"flex",alignItems:"center",justifyContent:"center"},
-  photoRing1:{position:"absolute",width:420,height:420,borderRadius:"50%",background:"radial-gradient(circle,rgba(232,160,32,.12) 0%,transparent 65%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)"},
-  photoRing2:{position:"absolute",width:320,height:320,borderRadius:"50%",border:"1px dashed rgba(232,160,32,.15)",top:"50%",left:"50%",transform:"translate(-50%,-50%)",animation:"spinSlow 30s linear infinite"},
-  photoWrap:{position:"relative",zIndex:2,width:320,height:400,borderRadius:"180px 180px 100px 100px",overflow:"hidden",background:"#0D1F2D",boxShadow:"0 0 0 2px rgba(232,160,32,.2),0 0 60px rgba(232,160,32,.15)",transition:"transform .4s ease"},
+  heroRight:{position:"relative",height:"auto",display:"flex",alignItems:"center",justifyContent:"center",padding:"20px 0"},
+  photoRing1:{position:"absolute",width:"clamp(260px,80vw,420px)",height:"clamp(260px,80vw,420px)",borderRadius:"50%",background:"radial-gradient(circle,rgba(232,160,32,.12) 0%,transparent 65%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)"},
+  photoRing2:{position:"absolute",width:"clamp(200px,60vw,320px)",height:"clamp(200px,60vw,320px)",borderRadius:"50%",border:"1px dashed rgba(232,160,32,.15)",top:"50%",left:"50%",transform:"translate(-50%,-50%)",animation:"spinSlow 30s linear infinite"},
+  photoWrap:{position:"relative",zIndex:2,width:"clamp(220px,70vw,320px)",height:"clamp(270px,85vw,400px)",borderRadius:"180px 180px 100px 100px",overflow:"hidden",background:"#0D1F2D",boxShadow:"0 0 0 2px rgba(232,160,32,.2),0 0 60px rgba(232,160,32,.15)",transition:"transform .4s ease"},
   photo:{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top"},
   photoFade:{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(6,13,26,.4) 0%,transparent 50%)",pointerEvents:"none"},
   chip:{position:"absolute",background:"rgba(6,13,26,.92)",border:"1px solid rgba(255,255,255,.08)",borderRadius:12,padding:"8px 14px",display:"flex",alignItems:"center",gap:8,zIndex:4,backdropFilter:"blur(10px)",animation:"float 4s ease-in-out infinite"},
 
-  infoStrip:{display:"flex",gap:0,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`,marginTop:32},
-  infoItem:{display:"flex",alignItems:"center",gap:8,padding:"14px 0",flex:1,textDecoration:"none",transition:"all .2s",justifyContent:"center",borderRight:`1px solid ${C.border}`},
+  infoStrip:{display:"flex",flexWrap:"wrap",gap:0,borderTop:`1px solid ${C.border}`,borderBottom:`1px solid ${C.border}`,marginTop:32},
+  infoItem:{display:"flex",alignItems:"center",gap:8,padding:"14px 10px",flex:"1 1 200px",textDecoration:"none",transition:"all .2s",justifyContent:"center",borderRight:`1px solid ${C.border}`},
 
-  sec:{maxWidth:1320,margin:"0 auto",padding:"80px 48px"},
+  sec:{maxWidth:1320,margin:"0 auto",padding:"64px 24px"},
   secHead:{textAlign:"center",marginBottom:48},
   eyebrow:{display:"block",fontSize:11,fontWeight:700,letterSpacing:2.5,color:C.amber,textTransform:"uppercase",marginBottom:10},
   secTitle:{fontSize:"clamp(26px,3.5vw,40px)",fontWeight:800,lineHeight:1.2},
@@ -625,7 +648,8 @@ const S={
   proj:{background:C.card,border:`1px solid ${C.border}`,borderRadius:10,overflow:"hidden",display:"flex",transition:"all .3s"},
   projLine:{width:4,flexShrink:0},
   projBody:{padding:"22px 26px",flex:1},
-  projTop:{marginBottom:8},
+  projTop:{marginBottom:8,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:10},
+  projLink:{display:"inline-flex",alignItems:"center",gap:6,fontSize:12,fontWeight:600,padding:"5px 12px",borderRadius:20,border:"1px solid",textDecoration:"none",flexShrink:0,transition:"all .2s"},
   projType:{fontSize:11,fontWeight:700,letterSpacing:.5},
   projPeriod:{fontSize:11,color:C.muted},
   projTitle:{fontSize:17,fontWeight:700,color:"#F1F5F9",margin:"6px 0 12px",lineHeight:1.35},
@@ -635,14 +659,14 @@ const S={
   eduCard:{background:C.card,border:`1px solid ${C.border}`,borderRadius:10,padding:"32px",marginTop:8},
   eduPill:{background:"rgba(232,160,32,.12)",border:"1px solid rgba(232,160,32,.25)",color:C.amber,padding:"6px 16px",borderRadius:20,fontSize:13,fontWeight:600,whiteSpace:"nowrap"},
 
-  contactGrid:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginTop:8},
+  contactGrid:{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:20,marginTop:8},
   contactCard:{background:C.card,border:`1px solid ${C.border}`,borderRadius:10,padding:"32px",display:"flex",flexDirection:"column",gap:16},
   ctRow:{display:"flex",gap:14,alignItems:"center",padding:"10px 0",borderBottom:`1px solid ${C.border}`,textDecoration:"none",transition:"all .2s",cursor:"pointer"},
   formCard:{background:C.card,border:`1px solid ${C.border}`,borderRadius:10,padding:"32px"},
   sentBox:{background:"rgba(74,222,128,.1)",border:"1px solid rgba(74,222,128,.3)",color:"#4ADE80",borderRadius:7,padding:"11px 16px",fontSize:13.5,marginBottom:14,display:"flex",alignItems:"center",gap:8},
   inp:{background:"rgba(255,255,255,0.04)",border:`1px solid ${C.border}`,borderRadius:7,padding:"12px 15px",color:C.text,fontSize:14,fontFamily:"'Inter',system-ui,sans-serif",width:"100%",boxSizing:"border-box",transition:"border-color .2s,box-shadow .2s"},
 
-  footer:{borderTop:`1px solid ${C.border}`,padding:"22px 48px",maxWidth:1320,margin:"0 auto"},
+  footer:{borderTop:`1px solid ${C.border}`,padding:"22px 24px",maxWidth:1320,margin:"0 auto"},
 };
 
 // ─── GLOBAL CSS ──────────────────────────────────────────
@@ -671,6 +695,7 @@ const CSS=`
   .skill-card:hover{border-color:rgba(232,160,32,.25) !important;transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.35);}
   .str-card:hover{border-color:rgba(232,160,32,.2) !important;transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.35);}
   .proj:hover{border-color:rgba(232,160,32,.2) !important;transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.4);}
+  .proj-link:hover{background:rgba(255,255,255,.06) !important;transform:translateY(-1px);}
   .ct-row:hover{background:rgba(255,255,255,.03);padding-left:6px;}
   .ct-row:hover svg{stroke:#E8A020;}
   .inp:focus{outline:none;border-color:#E8A020 !important;box-shadow:0 0 0 3px rgba(232,160,32,.12);}
@@ -679,8 +704,30 @@ const CSS=`
   .ft-ico:hover svg{stroke:#E8A020;}
   .info-item:hover{background:rgba(255,255,255,.03);}
   .ham{display:none !important;}
+
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+
+  /* Tablet & below: stack hero, nav becomes hamburger */
   @media(max-width:900px){
     .desktop-nav{display:none !important;}
     .ham{display:flex !important;}
+    .hero-inner{grid-template-columns:1fr !important;gap:8px !important;min-height:auto !important;padding-top:28px !important;padding-bottom:12px !important;}
+    .hero-right{order:-1;margin-bottom:8px;}
+    .hero-chip{display:none !important;}
+  }
+
+  /* Small tablet: project header / cards adjust, proficiency grid to 1 col */
+  @media(max-width:760px){
+    .prof-grid{grid-template-columns:1fr !important;gap:0 !important;}
+  }
+
+  /* Mobile: tighter spacing, full-width buttons */
+  @media(max-width:640px){
+    .nav{padding-left:16px !important;padding-right:16px !important;}
+  }
+
+  @media(max-width:480px){
+    .proj{flex-direction:column;}
+    .proj-link{width:100%;justify-content:center;}
   }
 `;
